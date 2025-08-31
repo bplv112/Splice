@@ -2,6 +2,35 @@
 
 A custom WordPress theme built from scratch for showcasing projects and portfolio work. This theme demonstrates advanced WordPress development skills including custom post types, REST API endpoints, dynamic navigation, and responsive design.
 
+## Table of Contents
+
+- [Features](#features)
+  - [Theme Development](#-theme-development)
+  - [Custom Post Types](#-custom-post-types)
+  - [Custom Templates](#-custom-templates)
+  - [Dynamic Navigation](#-dynamic-navigation)
+  - [REST API Endpoint](#-rest-api-endpoint)
+  - [Responsive Design](#-responsive-design)
+  - [Security Features](#-security-features)
+  - [Interactive Features](#-interactive-features)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Creating Projects](#creating-projects)
+  - [Custom Page Templates](#custom-page-templates)
+  - [REST API Usage](#rest-api-usage)
+  - [Project Filtering](#project-filtering)
+- [File Structure](#file-structure)
+- [Customization](#customization)
+  - [Adding Custom Styles](#adding-custom-styles)
+  - [Modifying JavaScript](#modifying-javascript)
+  - [Extending Functionality](#extending-functionality)
+- [Browser Support](#browser-support)
+- [Requirements](#requirements)
+- [Security Notes](#security-notes)
+- [Performance](#performance)
+- [Support](#support)
+- [License](#license)
+
 ## Features
 
 ### 🎨 Theme Development
