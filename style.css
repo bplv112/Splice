@@ -89,6 +89,9 @@ body {
     min-width: 200px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* Third level dropdown positioning */
@@ -96,11 +99,65 @@ body {
     top: 0;
     left: 100%;
     right: auto;
+    /* Add a small gap to make it easier to navigate */
+    margin-left: 2px;
 }
 
+/* Show dropdowns on hover with a small delay for better UX */
 .main-navigation ul li:hover > ul,
 .main-navigation ul ul li:hover > ul {
     display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Create a larger hover area for easier navigation */
+.main-navigation ul ul li {
+    position: relative;
+}
+
+/* Add invisible area to the right of dropdown items to make navigation easier */
+.main-navigation ul ul li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 20px;
+    height: 100%;
+    background: transparent;
+}
+
+/* Ensure grandchild menus stay visible when hovering over the gap */
+.main-navigation ul ul li:hover::after {
+    background: rgba(52, 73, 94, 0.1);
+}
+
+/* Visual indicator for menu hover state */
+.main-navigation ul ul li.menu-hover > a {
+    background-color: #2c3e50;
+    color: #3498db;
+}
+
+/* Improve the gap area for easier navigation */
+.main-navigation ul ul li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -15px;
+    width: 15px;
+    height: 100%;
+    background: transparent;
+    z-index: 1002;
+}
+
+/* Make the navigation area larger for easier access */
+.main-navigation ul ul {
+    padding: 5px 0;
+}
+
+.main-navigation ul ul ul {
+    margin-top: -5px;
+    margin-bottom: -5px;
 }
 
 .main-navigation ul ul li,
@@ -242,6 +299,11 @@ body {
     justify-content: center;
     color: #7f8c8d;
 }
+.project-image img {
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
 
 .project-content {
     padding: 1.5rem;
@@ -256,6 +318,10 @@ body {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: #2c3e50;
+}
+.project-title a {
+   text-decoration: none;
+   color: inherit;
 }
 
 .project-description {

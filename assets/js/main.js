@@ -224,26 +224,59 @@ jQuery(document).ready(function($) {
         });
     }
     
-    // Position dropdowns on hover
+    // Enhanced desktop navigation with better UX
+    var hoverTimeout;
+    
+    // Position dropdowns on hover with improved timing
     $('.main-navigation ul ul li').hover(
         function() {
             var $this = $(this);
             var $dropdown = $this.find('> ul');
             
             if ($dropdown.length) {
-                // Small delay to ensure dropdown is visible
-                setTimeout(function() {
+                // Clear any existing timeout
+                clearTimeout(hoverTimeout);
+                
+                // Small delay to prevent accidental triggering
+                hoverTimeout = setTimeout(function() {
                     positionDropdowns();
-                }, 10);
+                    
+                    // Add a visual indicator that the menu is accessible
+                    $this.addClass('menu-hover');
+                }, 150);
             }
         },
         function() {
-            // Reset positioning when not hovering
-            $('.main-navigation ul ul ul').css({
-                'left': '100%',
-                'right': 'auto'
-            });
-            $('.main-navigation ul ul li').removeClass('dropdown-left');
+            var $this = $(this);
+            var $dropdown = $this.find('> ul');
+            
+            // Clear timeout
+            clearTimeout(hoverTimeout);
+            
+            // Remove hover class
+            $this.removeClass('menu-hover');
+            
+            // Only hide if not hovering over the dropdown itself
+            if (!$dropdown.is(':hover')) {
+                // Reset positioning when not hovering
+                $('.main-navigation ul ul ul').css({
+                    'left': '100%',
+                    'right': 'auto'
+                });
+                $('.main-navigation ul ul li').removeClass('dropdown-left');
+            }
+        }
+    );
+    
+    // Keep dropdowns visible when hovering over them
+    $('.main-navigation ul ul ul').hover(
+        function() {
+            // Keep the dropdown visible
+            $(this).show();
+        },
+        function() {
+            // Hide when leaving the dropdown area
+            $(this).hide();
         }
     );
     
