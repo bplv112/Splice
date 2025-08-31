@@ -12,7 +12,7 @@ get_header(); ?>
         <?php while (have_posts()) : the_post(); ?>
             <article id="post-<?php the_ID(); ?>" <?php post_class('single-project'); ?>>
                 <header class="project-header">
-                    <h1 class="project-title">
+                    <h1 class="project-title entry-title">
                         <?php echo esc_html(custom_portfolio_get_project_meta(get_the_ID(), 'project_name') ?: get_the_title()); ?>
                     </h1>
                     
@@ -132,3 +132,4 @@ get_header(); ?>
 </main>
 
 <?php get_footer(); ?>
+

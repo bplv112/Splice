@@ -224,11 +224,11 @@ jQuery(document).ready(function($) {
         });
     }
     
-    // Enhanced desktop navigation with better UX
+    // Enhanced desktop navigation with better UX for grandchild menus only
     var hoverTimeout;
     var activeDropdown = null;
     
-    // Position dropdowns on hover with improved timing
+    // Only handle grandchild dropdowns (second level) - main dropdowns use CSS
     $('.main-navigation ul ul li').hover(
         function() {
             var $this = $(this);
@@ -242,7 +242,11 @@ jQuery(document).ready(function($) {
                 hoverTimeout = setTimeout(function() {
                     positionDropdowns();
                     
-                    // Add a visual indicator that the menu is accessible
+                    // Show the grandchild dropdown and add visual indicator
+                    $dropdown.show().css({
+                        'opacity': '1',
+                        'visibility': 'visible'
+                    });
                     $this.addClass('menu-hover');
                     
                     // Track the active dropdown
@@ -260,9 +264,13 @@ jQuery(document).ready(function($) {
             // Remove hover class
             $this.removeClass('menu-hover');
             
-            // Only reset if we're not hovering over the dropdown itself
+            // Only hide if we're not hovering over the dropdown itself
             if (activeDropdown !== $dropdown) {
-                // Reset positioning when not hovering
+                // Hide grandchild dropdown and reset positioning
+                $dropdown.hide().css({
+                    'opacity': '0',
+                    'visibility': 'hidden'
+                });
                 $('.main-navigation ul ul ul').css({
                     'left': '100%',
                     'right': 'auto'
@@ -273,20 +281,26 @@ jQuery(document).ready(function($) {
         }
     );
     
-    // Keep dropdowns visible when hovering over them
+    // Keep grandchild dropdowns visible when hovering over them
     $('.main-navigation ul ul ul').hover(
         function() {
             var $dropdown = $(this);
             
-            // Keep the dropdown visible and track it as active
-            $dropdown.show();
+            // Keep the grandchild dropdown visible and track it as active
+            $dropdown.show().css({
+                'opacity': '1',
+                'visibility': 'visible'
+            });
             activeDropdown = $dropdown;
         },
         function() {
             var $dropdown = $(this);
             
-            // Hide when leaving the dropdown area
-            $dropdown.hide();
+            // Hide when leaving the grandchild dropdown area
+            $dropdown.hide().css({
+                'opacity': '0',
+                'visibility': 'hidden'
+            });
             activeDropdown = null;
             
             // Reset positioning

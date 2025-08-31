@@ -359,7 +359,7 @@ function custom_portfolio_filter_projects() {
             }
             $output .= '</div>';
             $output .= '<div class="project-content">';
-            $output .= '<h3 class="project-title"><a href="' . esc_url(get_permalink($project->ID)) . '">' . esc_html($project_name ?: get_the_title($project->ID)) . '</a></h3>';
+            $output .= '<h3 class="project-title entry-title"><a href="' . esc_url(get_permalink($project->ID)) . '">' . esc_html($project_name ?: get_the_title($project->ID)) . '</a></h3>';
             $output .= '<p class="project-description">' . esc_html($project_description ?: wp_trim_words($project->post_content, 20)) . '</p>';
             $output .= '<div class="project-meta">';
             if ($project_start_date) {

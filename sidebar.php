@@ -67,3 +67,4 @@ if (!is_active_sidebar('sidebar-1')) {
         <?php get_search_form(); ?>
     </section>
 </aside><!-- #secondary -->
+

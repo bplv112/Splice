@@ -50,7 +50,7 @@ get_header(); ?>
                             <?php endif; ?>
                         </div>
                         <div class="project-content">
-                            <h3 class="project-title">
+                            <h3 class="project-title entry-title">
                                 <a href="<?php the_permalink(); ?>">
                                     <?php echo esc_html(custom_portfolio_get_project_meta(get_the_ID(), 'project_name') ?: get_the_title()); ?>
                                 </a>
