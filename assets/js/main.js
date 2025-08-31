@@ -226,7 +226,7 @@ jQuery(document).ready(function($) {
     
     // Enhanced desktop navigation with better UX
     var hoverTimeout;
-    var dropdownHoverState = {};
+    var activeDropdown = null;
     
     // Position dropdowns on hover with improved timing
     $('.main-navigation ul ul li').hover(
@@ -244,6 +244,9 @@ jQuery(document).ready(function($) {
                     
                     // Add a visual indicator that the menu is accessible
                     $this.addClass('menu-hover');
+                    
+                    // Track the active dropdown
+                    activeDropdown = $dropdown;
                 }, 150);
             }
         },
@@ -257,15 +260,15 @@ jQuery(document).ready(function($) {
             // Remove hover class
             $this.removeClass('menu-hover');
             
-            // Check if dropdown is being hovered using our state tracking
-            var dropdownId = $dropdown.attr('id') || 'dropdown-' + Math.random();
-            if (!dropdownHoverState[dropdownId]) {
+            // Only reset if we're not hovering over the dropdown itself
+            if (activeDropdown !== $dropdown) {
                 // Reset positioning when not hovering
                 $('.main-navigation ul ul ul').css({
                     'left': '100%',
                     'right': 'auto'
                 });
                 $('.main-navigation ul ul li').removeClass('dropdown-left');
+                activeDropdown = null;
             }
         }
     );
@@ -274,19 +277,24 @@ jQuery(document).ready(function($) {
     $('.main-navigation ul ul ul').hover(
         function() {
             var $dropdown = $(this);
-            var dropdownId = $dropdown.attr('id') || 'dropdown-' + Math.random();
-            dropdownHoverState[dropdownId] = true;
             
-            // Keep the dropdown visible
+            // Keep the dropdown visible and track it as active
             $dropdown.show();
+            activeDropdown = $dropdown;
         },
         function() {
             var $dropdown = $(this);
-            var dropdownId = $dropdown.attr('id') || 'dropdown-' + Math.random();
-            dropdownHoverState[dropdownId] = false;
             
             // Hide when leaving the dropdown area
             $dropdown.hide();
+            activeDropdown = null;
+            
+            // Reset positioning
+            $('.main-navigation ul ul ul').css({
+                'left': '100%',
+                'right': 'auto'
+            });
+            $('.main-navigation ul ul li').removeClass('dropdown-left');
         }
     );
     
